@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<identifier>com.odeon.widgets.tv.twitter</identifier>
+	<version>0.1</version>
+	<name>Twitter Client</name>
+    <platform minVersion="4.6.1" />
+    <security>
+		<filesystem>full</filesystem>
+		<command>true</command>
+        <http>all</http>
+    </security>
+    <author name="Horia Dragomir" organization="Odeon Consulting Group" href="http://od-eon.com/blog/horia"/>
+    <copyright>2010 Odeon Consulting Group</copyright>
+    <description>a simple twitter client!</description>
+    <settings>
+    	<setting name="debug" value="on"/>
+    </settings>
+    <image usage="960x540.logo" src="Images/960x540/news-logo.png"/>
+    <image usage="1920x1080.logo" src="Images/1920x1080/news-logo.png"/>
+    <image usage="960x540.icon" src="Images/960x540/about/news.png"/>
+    <image usage="1920x1080.icon" src="Images/1920x1080/about/news.png"/>
+</metadata>
