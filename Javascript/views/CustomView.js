@@ -54,7 +54,6 @@ var UserTimeline = new KONtx.Class({
     cellCreator: function(){      
         var grid_cell = new KONtx.control.GridCell({
             styles: {
-                padding: 5,
                 width: this.width
             },
             events: {
