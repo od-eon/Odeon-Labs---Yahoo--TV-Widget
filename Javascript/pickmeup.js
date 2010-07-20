@@ -15,8 +15,7 @@ include('Javascript/app/API.js');
 KONtx.application.init({
     views: [
         { id: 'view-Main', viewClass: MainView },
-        { id: 'view-Custom', viewClass: CustomView },
-        { id: 'view-AnotherCustomEdit', viewClass: AnotherCustomView, data: { mode: "edit" } },
+        { id: 'view-Custom', viewClass: UserTimeline },
         { id: 'view-About', viewClass: AboutView },
         { id: 'snippet-tweets', viewClass: SnippetView, data: { message: "Tweets" } }, // sample of storing something for the snippet to use
     ],

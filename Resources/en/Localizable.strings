@@ -1,7 +1,7 @@
 "snippet" = "Snippet";
-"view_0" = "Custom View Hello there, asshole";
-"view_1" = "Another Custom View - Edit Mode";
-"view_1_v2" = "Another Custom View - Insert Mode";
+"view_0" = "Your tweets";
+"view_1" = "Timeline";
+"view_1_v2" = "";
 "about" = "About";
 "settings" = "Settings";
 "menu" = "Menu";

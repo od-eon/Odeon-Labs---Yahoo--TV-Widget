@@ -2,8 +2,8 @@
  * @author jstone
  */
 
-var CustomView = new KONtx.Class({
- 	ClassName: 'MyCustomView',
+var UserTimeline = new KONtx.Class({
+ 	ClassName: 'UserTimeline',
 	
 	Extends: KONtx.system.SidebarView,
     config: {
@@ -24,7 +24,7 @@ var CustomView = new KONtx.Class({
         
         this.controls.tweets = new KONtx.control.Grid({
             columns: 1,
-            rows: 11,
+            rows: 1,
             cellCreator: this.cellCreator,
             cellUpdater: this.cellUpdater,
             styles: {
@@ -34,38 +34,76 @@ var CustomView = new KONtx.Class({
             }
         }).appendTo(this);
         
+        this.controls.page_indicator = new KONtx.control.PageIndicator({
+            threshold: 333,
+            styles: {'vOffset': this.controls.tweets.height }
+        }).appendTo(this);
         
+        this.controls.tweets.attachAccessories( this.controls.page_indicator );
         
         $API.getTweets();
     },
 
     cellUpdater: function(cell, dataitem) {
         cell.tweetText.data = dataitem.text;
+        cell.avatar.src =  dataitem.user.profile_image_url;
+        cell.username.data = dataitem.user.name;
+        
     },
     
     cellCreator: function(){      
-        var cell = new KONtx.control.GridCell({
+        var grid_cell = new KONtx.control.GridCell({
             styles: {
-            width: this.width
-        },
-        events: {
-            onSelect: function(event) {
-                log("You selected a tweet");
+                padding: 5,
+                width: this.width
+            },
+            events: {
+                onSelect: function(event) {
+                    log("You selected a tweet");
+                }
             }
-        } } );
-        cell.tweetText = new KONtx.element.Text({
+        } );
+        
+        grid_cell.imageBox = new KONtx.element.Container({
+            styles: { 'hOffset': 10, 'vOffset': 10, 'width': 64, 'height': 64 }
+        }).appendTo(grid_cell);
+        
+        grid_cell.avatar = new KONtx.element.Image({
+			styles: { 'hAlign': 'center', 'vAlign': 'center' },
+			events: {
+				'onLoaded': function() {
+					
+				}
+			}
+		}).appendTo(grid_cell.imageBox);
+        
+        grid_cell.tweetText = new KONtx.element.Text({
             styles: {
                 color: '#FFFFFF',
-                fontSize: KONtx.utility.scale(18),
-                hAlign: 'center'
+                fontSize: KONtx.utility.scale(14),
+                hAlign: 'center',
+                width: this.width,
+                wrap: true,
+                vOffset: 80
             }
-        }).appendTo(cell);
-        return cell;
+        }).appendTo(grid_cell);
+        
+		
+		
+		grid_cell.username = new KONtx.element.Text({
+			wrap: true,
+            label: 'A very very long name here',
+			styles: { 'fontFamily': 'Helvetica Neue Condensed',
+            'fontSize': 18, 'color': "#AAAAAA",
+            'vOffset': 20, 'hOffset': 80, 'height': 50, 'width': 150 }
+		}).appendTo(grid_cell)
+        
+        return grid_cell;
     },
     
     updateGridData: function(tweets){
         if(tweets instanceof Array && this.controls.tweets instanceof KONtx.control.Grid){
-            
+            //this.controls.tweets.config.rows = Math.min(tweets.length, 10);
             this.controls.tweets.changeDataset(tweets);
         }
     },

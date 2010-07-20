@@ -35,20 +35,9 @@ var SnippetView = new KONtx.Class({
                 color: '#FFFFFF'
             }
         }).appendTo(this);
-		
-		this.controls.counter = new KONtx.element.Text({
-            label: this.config.counterPrefix + this.selected_count,
-            styles: {
-                hAlign: 'center',
-                vOffset: KONtx.utility.scale(55),
-                fontSize:  KONtx.utility.scale(12),
-                color: '#FFFFFF'
-            }
-        }).appendTo(this);
+
 	},
 	
 	updateView: function() {
-		this.selected_count++;
-		this.controls.counter.setText(this.config.counterPrefix + this.selected_count);
 	}
 });
