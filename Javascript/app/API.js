@@ -42,7 +42,6 @@ $API = (function(){
     }
     
     return {
-        
         'getTweets': function(timeline, since_id){
             timeline = timeline || 'user_timeline';
             credentials(function(userpass){
@@ -56,6 +55,5 @@ $API = (function(){
             })
         },
         key: _key
-        
     }
 })()

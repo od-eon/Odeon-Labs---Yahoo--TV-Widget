@@ -16,7 +16,7 @@ var MainView = new KONtx.Class({
             },
             events: {
                 onSelect: function(event) {
-                    KONtx.application.loadView('view-UserTimeline');
+                    KONtx.application.loadView('view-FriendsTimeline');
                 }
             }
         }).appendTo(this);
@@ -30,7 +30,7 @@ var MainView = new KONtx.Class({
             },
             events: {
                 onSelect: function(event) {
-                    KONtx.application.loadView('view-FriendsTimeline');
+                    KONtx.application.loadView('view-UserReplies');
                 }
             }
         }).appendTo(this);
@@ -44,7 +44,7 @@ var MainView = new KONtx.Class({
             },
             events: {
                 onSelect: function(event) {
-                    KONtx.application.loadView('view-UserReplies');
+                    KONtx.application.loadView('view-UserTimeline');
                 }
             }
         }).appendTo(this);
