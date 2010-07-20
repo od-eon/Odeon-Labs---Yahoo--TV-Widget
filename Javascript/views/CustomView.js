@@ -12,6 +12,7 @@ var CustomView = new KONtx.Class({
     initialize: function(){
         this.parent();
         this.registerMessageCenterListenerCallback(this.messageHandler);
+        log('twitter initialized')
     },
     
     createView: function() {
@@ -23,25 +24,28 @@ var CustomView = new KONtx.Class({
         
         this.controls.tweets = new KONtx.control.Grid({
             columns: 1,
-            rows: 1,
+            rows: 11,
             cellCreator: this.cellCreator,
             cellUpdater: this.cellUpdater,
             styles: {
                 vOffset: this.controls.backButton.outerHeight,
-                width: this.width
+                width: this.width,
+                height: this.height - this.controls.backButton.outerHeight
             }
         }).appendTo(this);
+        
+        
+        
+        $API.getTweets();
     },
 
     cellUpdater: function(cell, dataitem) {
-        log(dataitem.text)
         cell.tweetText.data = dataitem.text;
     },
     
     cellCreator: function(){      
         var cell = new KONtx.control.GridCell({
             styles: {
-            height: KONtx.utility.scale(35),
             width: this.width
         },
         events: {
@@ -53,7 +57,7 @@ var CustomView = new KONtx.Class({
             styles: {
                 color: '#FFFFFF',
                 fontSize: KONtx.utility.scale(18),
-                vAlign: 'center'
+                hAlign: 'center'
             }
         }).appendTo(cell);
         return cell;
@@ -61,19 +65,20 @@ var CustomView = new KONtx.Class({
     
     updateGridData: function(tweets){
         if(tweets instanceof Array && this.controls.tweets instanceof KONtx.control.Grid){
+            
             this.controls.tweets.changeDataset(tweets);
         }
     },
     
     messageHandler: function(ev){
-        if(event.type != KONtx.messages.eventType) return;
-        if(event.payload.key == this.config.tweetsLoadedKey) {
-            log('halalala**&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
-            this.updateGridData(event.payload.value);
+        if(ev.type != KONtx.messages.eventType) return;
+        if(ev.payload.key == this.config.tweetsLoadedKey) {
+            this.updateGridData(ev.payload.value);
         }
     },
     
 	updateView: function() {
-		// put your code here for updating the contents of the page
+        var tweets = KONtx.messages.fetch(this.config.tweetsLoadedKey);
+        tweets && this.updateGridData(tweets);
 	}
 });

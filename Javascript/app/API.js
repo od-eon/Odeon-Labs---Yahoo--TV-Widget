@@ -24,9 +24,10 @@ $API = (function(){
         
         'getTweets': function(since_id){
             
-            get('http://hdragomir:******@twitter.com/statuses/user_timeline.json' +
+            get('http://hornicator:simplepassword@twitter.com/statuses/user_timeline.json' +
                 ( since_id ? '?since_id=' + since_id : '' ),
                 function(response){
+                    log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tweets-r-here!!');
                     KONtx.messages.store('tweets-r-here', JSON.parse(response));
                 })
         }

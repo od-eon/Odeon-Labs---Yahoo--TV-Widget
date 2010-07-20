@@ -32,7 +32,6 @@ var MainView = new KONtx.Class({
             }
         }).appendTo(this);
         
-        $API.getTweets();
         
     },
     
