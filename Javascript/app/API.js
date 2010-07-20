@@ -22,9 +22,9 @@ $API = (function(){
     
     return {
         
-        'getTweets': function(since_id){
-            
-            get('http://hornicator:simplepassword@twitter.com/statuses/user_timeline.json' +
+        'getTweets': function(timeline, since_id){
+            timeline = timeline || 'user_timeline'
+            get('http://hornicator:simplepassword@twitter.com/statuses/' + timeline + '.json' +
                 ( since_id ? '?since_id=' + since_id : '' ),
                 function(response){
                     log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tweets-r-here!!');

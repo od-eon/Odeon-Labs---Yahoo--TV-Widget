@@ -14,7 +14,7 @@ var MainView = new KONtx.Class({
             guid: "button0",
             events: {
                 onSelect: function(event) {
-                    KONtx.application.loadView('view-Custom');
+                    KONtx.application.loadView('view-UserTimeline');
                 }
             }
         }).appendTo(this);
@@ -23,11 +23,11 @@ var MainView = new KONtx.Class({
             label: $_('view_1'),
             guid: "button1",
             styles: {
-                vOffset: this.controls.button1.outerHeight,
+                vOffset: this.controls.button1.outerHeight
             },
             events: {
                 onSelect: function(event) {
-                    KONtx.application.loadView('view-AnotherCustomEdit');
+                    KONtx.application.loadView('view-FriendsTimeline');
                 }
             }
         }).appendTo(this);

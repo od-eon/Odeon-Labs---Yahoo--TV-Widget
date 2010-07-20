@@ -6,7 +6,6 @@ include("Framework/kontx/1.0.0/src/all.js");
 
 include("Javascript/views/MainView.js");
 include("Javascript/views/CustomView.js");
-include("Javascript/views/AnotherCustomView.js");
 include("Javascript/views/AboutView.js");
 include("Javascript/views/SnippetView.js");
 
@@ -15,9 +14,10 @@ include('Javascript/app/API.js');
 KONtx.application.init({
     views: [
         { id: 'view-Main', viewClass: MainView },
-        { id: 'view-Custom', viewClass: UserTimeline },
+        { id: 'view-UserTimeline', viewClass: UserTimeline, data: {timeline: 'user_timeline'} },
+        { id: 'view-FriendsTimeline', viewClass: UserTimeline, data: {timeline: 'friends_timeline'} },
         { id: 'view-About', viewClass: AboutView },
-        { id: 'snippet-tweets', viewClass: SnippetView, data: { message: "Tweets" } }, // sample of storing something for the snippet to use
+        { id: 'snippet-tweets', viewClass: SnippetView, data: { message: "Tweets" } },
     ],
     defaultViewId: 'view-Main',
     settingsViewId: 'view-About'

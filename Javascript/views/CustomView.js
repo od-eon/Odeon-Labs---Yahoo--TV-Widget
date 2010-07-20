@@ -3,7 +3,7 @@
  */
 
 var UserTimeline = new KONtx.Class({
- 	ClassName: 'UserTimeline',
+ 	ClassName: 'UserTimelineView',
 	
 	Extends: KONtx.system.SidebarView,
     config: {
@@ -12,7 +12,6 @@ var UserTimeline = new KONtx.Class({
     initialize: function(){
         this.parent();
         this.registerMessageCenterListenerCallback(this.messageHandler);
-        log('twitter initialized')
     },
     
     createView: function() {
@@ -41,7 +40,7 @@ var UserTimeline = new KONtx.Class({
         
         this.controls.tweets.attachAccessories( this.controls.page_indicator );
         
-        $API.getTweets();
+        $API.getTweets( this.config.data.timeline || 'user_timeline' );
     },
 
     cellUpdater: function(cell, dataitem) {
