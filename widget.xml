@@ -15,8 +15,8 @@
     <settings>
     	<setting name="debug" value="on"/>
     </settings>
-    <image usage="960x540.logo" src="Images/960x540/news-logo.png"/>
-    <image usage="1920x1080.logo" src="Images/1920x1080/news-logo.png"/>
-    <image usage="960x540.icon" src="Images/960x540/about/news.png"/>
-    <image usage="1920x1080.icon" src="Images/1920x1080/about/news.png"/>
+    <image usage="960x540.logo" src="Images/960x540/twitter.png"/>
+    <image usage="1920x1080.logo" src="Images/1920x1080/twitter.png"/>
+    <image usage="960x540.icon" src="Images/960x540/twitter.png"/>
+    <image usage="1920x1080.icon" src="Images/1920x1080/twitter.png"/>
 </metadata>

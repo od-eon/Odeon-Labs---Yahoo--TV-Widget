@@ -30,6 +30,19 @@ var MainView = new KONtx.Class({
                 }
             }
         }).appendTo(this);
+        
+        this.controls.button3 = new KONtx.control.TextButton({
+            label: $_('view_2'),
+            guid: "button1",
+            styles: {
+                vOffset: this.controls.button2.outerHeight
+            },
+            events: {
+                onSelect: function(event) {
+                    KONtx.application.loadView('view-UserReplies');
+                }
+            }
+        }).appendTo(this);
       
         
         
