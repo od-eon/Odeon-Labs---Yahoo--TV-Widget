@@ -39,7 +39,18 @@ var UserTimeline = new KONtx.Class({
         }).appendTo(this);
         
         this.controls.tweets.attachAccessories( this.controls.page_indicator );
+        var upair = currentAppData.get($API.key);
         
+        if(! upair){
+            var dialog = new KONtx.dialogs.Login({
+                title: $_('dialog-login-title'),
+                message: $_('dialog-login-message'),
+                callback: this.verify
+            });
+            dialog.initialize();
+            dialog.show();
+            
+        }              
         $API.getTweets( this.config.data.timeline || 'user_timeline' );
     },
 
@@ -50,7 +61,7 @@ var UserTimeline = new KONtx.Class({
         
     },
     
-    cellCreator: function(){      
+    cellCreator: function(){
         var grid_cell = new KONtx.control.GridCell({
             styles: {
                 width: this.width
@@ -67,13 +78,8 @@ var UserTimeline = new KONtx.Class({
         }).appendTo(grid_cell);
         
         grid_cell.avatar = new KONtx.element.Image({
-			styles: { 'hAlign': 'center', 'vAlign': 'center' },
-			events: {
-				'onLoaded': function() {
-					
-				}
-			}
-		}).appendTo(grid_cell.imageBox);
+            styles: { 'hAlign': 'center', 'vAlign': 'center' }
+        }).appendTo(grid_cell.imageBox);
         
         grid_cell.tweetText = new KONtx.element.Text({
             styles: {
@@ -86,22 +92,19 @@ var UserTimeline = new KONtx.Class({
             }
         }).appendTo(grid_cell);
         
-		
-		
-		grid_cell.username = new KONtx.element.Text({
-			wrap: true,
-            label: 'A very very long name here',
-			styles: { 'fontFamily': 'Helvetica Neue Condensed',
+        grid_cell.username = new KONtx.element.Text({
+            wrap: true,
+            label: '',
+            styles: { 'fontFamily': 'Helvetica Neue Condensed',
             'fontSize': 18, 'color': "#AAAAAA",
             'vOffset': 20, 'hOffset': 80, 'height': 50, 'width': 150 }
-		}).appendTo(grid_cell)
+        }).appendTo(grid_cell)
         
         return grid_cell;
     },
     
     updateGridData: function(tweets){
         if(tweets instanceof Array && this.controls.tweets instanceof KONtx.control.Grid){
-            //this.controls.tweets.config.rows = Math.min(tweets.length, 10);
             this.controls.tweets.changeDataset(tweets);
         }
     },
@@ -116,5 +119,7 @@ var UserTimeline = new KONtx.Class({
 	updateView: function() {
         var tweets = KONtx.messages.fetch(this.config.tweetsLoadedKey);
         tweets && this.updateGridData(tweets);
-	}
+	},
+    verify: function(r){
+    }
 });

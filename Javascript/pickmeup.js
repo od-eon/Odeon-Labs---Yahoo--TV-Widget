@@ -9,6 +9,8 @@ include("Javascript/views/CustomView.js");
 include("Javascript/views/AboutView.js");
 include("Javascript/views/SnippetView.js");
 
+//currentAppData.delete('twitter-upair');
+
 include('Javascript/app/API.js');
 
 KONtx.application.init({

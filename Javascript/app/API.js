@@ -1,5 +1,7 @@
 $API = (function(){
     
+    var _key = 'twitter-upair';
+    
     function get(url, callback){
         var u = new URL();
         u.callback = callback;
@@ -20,17 +22,40 @@ $API = (function(){
         } );
     }
     
+    
+    function credentials(callback){
+        var upair = currentAppData.get(_key);
+        if(! upair){
+            var dialog = new KONtx.dialogs.Login({
+                title: $_('dialog-login-title'),
+                message: $_('dialog-login-message'),
+                callback: function(response){
+                    currentAppData.set(_key, JSON.stringify(response));
+                    credentials(callback);
+                }
+            });
+            dialog.initialize();
+            dialog.show();
+        } else {
+            callback(JSON.parse(upair));
+        }
+    }
+    
     return {
         
         'getTweets': function(timeline, since_id){
-            timeline = timeline || 'user_timeline'
-            get('http://hornicator:simplepassword@twitter.com/statuses/' + timeline + '.json' +
+            timeline = timeline || 'user_timeline';
+            credentials(function(userpass){
+                get('http://' + userpass.username + ':'
+                    + userpass.password +
+                    '@twitter.com/statuses/' + timeline + '.json' +
                 ( since_id ? '?since_id=' + since_id : '' ),
                 function(response){
-                    log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!tweets-r-here!!');
                     KONtx.messages.store('tweets-r-here', JSON.parse(response));
                 })
-        }
+            })
+        },
+        key: _key
         
     }
 })()

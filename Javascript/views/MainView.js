@@ -8,7 +8,6 @@ var MainView = new KONtx.Class({
     Extends: KONtx.system.SidebarView,
     
     createView: function() {
-        // put your code here for creating the elements on the page
         this.controls.button1 = new KONtx.control.TextButton({
             label: $_('view_0'),
             guid: "button0",
@@ -31,11 +30,14 @@ var MainView = new KONtx.Class({
                 }
             }
         }).appendTo(this);
+      
         
         
+      
     },
     
+    
+    
     updateView: function() {
-        // put your code here for updating the contents of the page
     }
 });

@@ -12,3 +12,5 @@
 "custom_view_backbutton"="Custom View";
 "edit_mode"="Edit Mode";
 "insert_mode"="Insert Mode";
+"dialog-login-message"="Login to Twitter";
+"dialog-login-title"="Login";
