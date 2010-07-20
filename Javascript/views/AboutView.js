@@ -7,7 +7,7 @@ var AboutView = new KONtx.Class({
 	
 	Extends: KONtx.views.AboutBox,
 	
-	config: {	
+	config: {
 		BackButtonTitle: $_('settings'),
 		pages: [
 			{

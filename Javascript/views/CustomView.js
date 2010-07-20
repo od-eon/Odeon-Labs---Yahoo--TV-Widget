@@ -1,5 +1,5 @@
 /**
- * @author jstone
+ * @author Horia Dragomir horia.dragomir@od-eon.com
  */
 
 var UserTimeline = new KONtx.Class({
@@ -51,7 +51,7 @@ var UserTimeline = new KONtx.Class({
             dialog.show();
             
         }              
-        $API.getTweets( this.config.data.timeline || 'user_timeline' );
+        $API.getTweets( this.config.data.timeline );
     },
 
     cellUpdater: function(cell, dataitem) {
@@ -85,10 +85,11 @@ var UserTimeline = new KONtx.Class({
             styles: {
                 color: '#FFFFFF',
                 fontSize: KONtx.utility.scale(14),
-                hAlign: 'center',
-                width: this.width,
+                hAlign: 'left',
+                width: this.width - 20,
                 wrap: true,
-                vOffset: 80
+                vOffset: 80,
+                hOffset: 10
             }
         }).appendTo(grid_cell);
         

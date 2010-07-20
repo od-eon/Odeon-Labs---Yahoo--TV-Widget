@@ -1,9 +1,9 @@
 /**
- * @author jstone
+ * @author Horia Dragomir horia.dragomir@od-eon.com
  */
 
 var MainView = new KONtx.Class({
-    ClassName: 'MyCustomMainView',
+    ClassName: 'TwitterWidgetMainView',
     
     Extends: KONtx.system.SidebarView,
     
@@ -11,6 +11,9 @@ var MainView = new KONtx.Class({
         this.controls.button1 = new KONtx.control.TextButton({
             label: $_('view_0'),
             guid: "button0",
+            styles:{
+                height: 60
+            },
             events: {
                 onSelect: function(event) {
                     KONtx.application.loadView('view-UserTimeline');
@@ -22,6 +25,7 @@ var MainView = new KONtx.Class({
             label: $_('view_1'),
             guid: "button1",
             styles: {
+                height: 60,
                 vOffset: this.controls.button1.outerHeight
             },
             events: {
@@ -33,8 +37,9 @@ var MainView = new KONtx.Class({
         
         this.controls.button3 = new KONtx.control.TextButton({
             label: $_('view_2'),
-            guid: "button1",
+            guid: "button2",
             styles: {
+                height: 60,
                 vOffset: this.controls.button2.outerHeight
             },
             events: {
